@@ -200,7 +200,7 @@ user.afkTime = -1
 user.afkReason = ''
 }
 
-        if (m.isGroup && !m.key.fromMe &&  db.data.chats[m.chat].antilink = true && !isCreator && !isGroupAdmins && !isGroupOwner){
+        if (m.isGroup && !m.key.fromMe &&  db.data.chats[m.chat].antilink && !isCreator && !isGroupAdmins && !isGroupOwner){
         	if (budy.match(`https://chat.whatsapp.com`)) {
         	alpha.sendMessage(m.chat, {text: `*Antilink Group Terdeteksi*\n\nKamu akan dikeluarkan dari group ${groupMetadata.subject}`}, {quoted:m})
 			alpha.groupParticipantsUpdate(m.chat, [sender], 'remove')
@@ -286,7 +286,7 @@ if (isWin || isSurender) delete _family100['family100'+m.chat]
 }
 
 if (tebakgambar.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakgambar[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayText: 'Tebak Gambar' }, type: 1 }], `🎮 Tebak Gambar 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -296,7 +296,7 @@ delete tebakgambar[m.sender.split('@')[0]]
 
 
 if (tebakkata.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakkata[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayText: 'Tebak Kata' }, type: 1 }], `🎮 Tebak Kata 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -306,7 +306,7 @@ delete tebakkata[m.sender.split('@')[0]]
 
 
 if (tebakbendera.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakbendera[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { displayText: 'Tebak Bendera' }, type: 1 }], `🎮 Tebak Bendera 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -336,7 +336,7 @@ delete susunkata[m.sender.split('@')[0]]
 
 
 if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakkalimat[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { displayText: 'Tebak Kalimat' }, type: 1 }], `🎮 Tebak Kalimat 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -367,7 +367,7 @@ delete tekateki[m.sender.split('@')[0]]
 
 
 if (tebakkabupaten.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakkabupaten[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kabupaten', buttonText: { displayText: 'Tebak Kabupaten' }, type: 1 }], `🎮 Tebak Kabupaten 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -377,7 +377,7 @@ delete tebakkabupaten[m.sender.split('@')[0]]
 
 
 if (tebakkimia.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebakkimia[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kimia', buttonText: { displayText: 'Tebak Kimia' }, type: 1 }], `🎮 Tebak Kimia 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -387,7 +387,7 @@ delete tebakkimia[m.sender.split('@')[0]]
 
 
 if (tebaklirik.hasOwnProperty(m.sender.split('@')[0]) && isCmd) {
-kuis = false
+kuis = true
 jawaban = tebaklirik[m.sender.split('@')[0]]
 if (budy.toLowerCase() == jawaban) {
 await alpha.sendButtonText(m.chat, [{ buttonId: 'tebak lirik', buttonText: { displayText: 'Tebak Lirik' }, type: 1 }], `🎮 Tebak Lirik 🎮\n\nJawaban Benar 🎉\n\nIngin bermain lagi? tekan button dibawah`, `© ${ownername}`, m)
@@ -877,7 +877,7 @@ if (!m.isGroup) return reply(lang.groupOnly())
 					reply(lang.wait())
 					axios.get(`https://api.waifu.pics/sfw/${command}`)
 					.then(({data}) => {
-						alpha.sendImage(m.chat, data.url, lang.ok(), m)
+						alpha.sendMediaAsSticker(m.chat, data.url, m, { packname: global.packname, author: global.author })
 
 
 					})
@@ -1074,7 +1074,7 @@ break
 					txt += `*🛠️ Quality :* ${data.medias[1].quality}\n`
 					txt += `*🚧 Ext :* ${data.medias[0].extension}\n`
                     txt += `*💾 Size :* ${data.medias[0].formattedSize}\n`
-                    txt += `*?? Url Source :* ${data.url}\n\n`
+                    txt += `*📚 Url Source :* ${data.url}\n\n`
                     txt += `*Mohon tunggu sebentar kak, sedang proses pengiriman...*`
                     let gam = await getBuffer(data.thumbnail)
                     var but = [
@@ -1312,7 +1312,7 @@ hadiah: 6,
 }
 }
 break
-case 'tebakgambaryui': {
+case 'tebakgambar': {
 if (tebakgambar.hasOwnProperty(m.sender.split('@')[0])) throw`Masih Ada Sesi Yang Belum Diselesaikan!`
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakgambar.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1326,7 +1326,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak gambar', buttonText: { displayT
 delete tebakgambar[m.sender.split('@')[0]]
 }
 } 
-case 'tebakkatayui': {
+case 'tebakkata': {
 if (tebakkata.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkata.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1340,7 +1340,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kata', buttonText: { displayTex
 delete tebakkata[m.sender.split('@')[0]]
 }
 } 
-case 'tebakbenderayui': {
+case 'tebakbendera': {
 if (tebakbendera.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakbendera2.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1354,7 +1354,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak bendera', buttonText: { display
 delete tebakbendera[m.sender.split('@')[0]]
 }
 } 
-case 'tebakkalimatyui': {
+case 'tebakkalimat': {
 if (tebakkalimat.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkalimat.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1368,7 +1368,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kalimat', buttonText: { display
 delete tebakkalimat[m.sender.split('@')[0]]
 }
 } 
-case 'tebaksiapayui': {
+case 'tebaksiapa': {
 if (siapaaku.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/siapakahaku.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1382,7 +1382,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak siapa', buttonText: { displayTe
 delete siapaaku[m.sender.split('@')[0]]
 }
 } 
-case 'tebakkabupatenyui':{
+case 'tebakkabupaten':{
 if (tebakkabupaten.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkabupaten.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1396,7 +1396,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kabupaten', buttonText: { displ
 delete tebakkabupaten[m.sender.split('@')[0]]
 }
 }
- case 'tebakkimiayui':{
+ case 'tebakkimia':{
 if (tebakkimia.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebakkimia.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
@@ -1410,7 +1410,7 @@ alpha.sendButtonText(m.chat, [{ buttonId: 'tebak kimia', buttonText: { displayTe
 delete tebakkimia[m.sender.split('@')[0]]
 }
 } 
-case 'tebaklirikyui': {
+case 'tebaklirik': {
 if (tebaklirik.hasOwnProperty(m.sender.split('@')[0])) return reply(`Masih Ada Sesi Yang Belum Diselesaikan!`)
 let anu = await fetchJson('https://raw.githubusercontent.com/BochilTeam/database/master/games/tebaklirik.json')
 let result = anu[Math.floor(Math.random() * anu.length)]
